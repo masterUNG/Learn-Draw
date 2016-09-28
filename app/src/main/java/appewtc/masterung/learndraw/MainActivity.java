@@ -29,7 +29,8 @@ public class MainActivity extends Activity {
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(6);
-    }
+
+    }   // Main Method
 
     public class DrawingView extends View {
 
@@ -55,7 +56,8 @@ public class MainActivity extends Activity {
             circlePaint.setStyle(Paint.Style.STROKE);
             circlePaint.setStrokeJoin(Paint.Join.MITER);
             circlePaint.setStrokeWidth(4f);
-        }
+
+        }   // Constructor DrawingView
 
         @Override
         protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -63,7 +65,7 @@ public class MainActivity extends Activity {
 
             mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
             mCanvas = new Canvas(mBitmap);
-        }
+        }   // onSizeChanged
 
         @Override
         protected void onDraw(Canvas canvas) {
@@ -72,7 +74,7 @@ public class MainActivity extends Activity {
             canvas.drawBitmap( mBitmap, 0, 0, mBitmapPaint);
             canvas.drawPath( mPath,  mPaint);
             canvas.drawPath( circlePath,  circlePaint);
-        }
+        }   // onDraw
 
         private float mX, mY;
         private static final float TOUCH_TOLERANCE = 4;
@@ -82,7 +84,7 @@ public class MainActivity extends Activity {
             mPath.moveTo(x, y);
             mX = x;
             mY = y;
-        }
+        }   // touch_start
 
         private void touch_move(float x, float y) {
             float dx = Math.abs(x - mX);
@@ -95,7 +97,7 @@ public class MainActivity extends Activity {
                 circlePath.reset();
                 circlePath.addCircle(mX, mY, 30, Path.Direction.CW);
             }
-        }
+        }   // touch_move
 
         private void touch_up() {
             mPath.lineTo(mX, mY);
@@ -104,7 +106,7 @@ public class MainActivity extends Activity {
             mCanvas.drawPath(mPath,  mPaint);
             // kill this so we don't double draw
             mPath.reset();
-        }
+        }   // touch_up
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
@@ -126,6 +128,8 @@ public class MainActivity extends Activity {
                     break;
             }
             return true;
-        }
-    }
-}
+        }   // onTouchEvent
+
+    }   // DrawingView Class
+
+}   // Main Class
