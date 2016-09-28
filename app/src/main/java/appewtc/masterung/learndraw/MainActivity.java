@@ -3,6 +3,7 @@ package appewtc.masterung.learndraw;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -30,6 +31,8 @@ public class MainActivity extends Activity {
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(6);
 
+
+
     }   // Main Method
 
     public class DrawingView extends View {
@@ -55,7 +58,7 @@ public class MainActivity extends Activity {
             circlePaint.setColor(Color.BLUE);
             circlePaint.setStyle(Paint.Style.STROKE);
             circlePaint.setStrokeJoin(Paint.Join.MITER);
-            circlePaint.setStrokeWidth(4f);
+            circlePaint.setStrokeWidth(4f); //ขนาดของเส้นวงกลม ปลายปากกา
 
         }   // Constructor DrawingView
 
@@ -71,9 +74,15 @@ public class MainActivity extends Activity {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
 
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test);
+            canvas.drawBitmap(bitmap, 0, 0, mBitmapPaint);
+
             canvas.drawBitmap( mBitmap, 0, 0, mBitmapPaint);
             canvas.drawPath( mPath,  mPaint);
             canvas.drawPath( circlePath,  circlePaint);
+
+
+
         }   // onDraw
 
         private float mX, mY;
